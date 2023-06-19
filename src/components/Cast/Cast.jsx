@@ -14,8 +14,10 @@ const Cast = () => {
       // console.log(casts);
     };
     if (movieId) cast();
-  });
+  }, [movieId]);
+
   console.log(acteurs);
+
   return (
     <>
       <ul>

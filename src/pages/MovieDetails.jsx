@@ -11,10 +11,9 @@ const MovieDetails = () => {
     const details = async () => {
       const movie = await getMovieId(movieId);
       setMovieDetail(movie);
-      // console.log(movie);
     };
     if (movieId) details();
-  }, []);
+  }, [movieId]);
 
   const { title, poster_path, original_title, vote_average, overview, genres } =
     movieDetail;
