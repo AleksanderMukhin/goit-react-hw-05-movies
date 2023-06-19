@@ -1,3 +1,6 @@
+// import { useStateContext } from './context/StateContext';
+// const { movieId } = useStateContext();
+
 const options = {
   method: 'GET',
   headers: {
@@ -19,10 +22,10 @@ const getTrends = async () => {
   }
 }
 
-const searchMovies = async () => {  
+const searchMovies = async (searchValue) => {  
 
   try {
-    const response = await fetch('https://api.themoviedb.org/3/search/movie?query=avatar&include_adult=false&language=en-US&page=1', options)
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchValue}&include_adult=false&language=en-US&page=1`, options)
     const resp = await response.json();
     const movies = await resp.results;
     // console.log(movies)
@@ -32,20 +35,29 @@ const searchMovies = async () => {
   }
 }
 
-const getMovieId = async () => {
+const getMovieId = async (movieId) => {
   try {
-    const response =fetch('https://api.themoviedb.org/3/movie/movie_id?language=en-US', options)
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
     const resp = await response.json();
-    const movies = await resp.results;
-    // console.log(movies)
-    return movies;
+    
+    return resp;
   } catch (err) {
     return console.error(err);
   }
 }
 
+const getCasts = async (movieId) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`, options)
+    const resp = await response.json();
+    
+    return resp.cast;
+  } catch (err) {
+    return console.error(err);
+  }
+}
 
-export { getTrends, searchMovies, getMovieId }
+export { getTrends, searchMovies, getMovieId, getCasts }
 
 // API Key: 37004eb52da1844c858b1537ec95a99f
 // https://api.themoviedb.org/3/movie/550?api_key=37004eb52da1844c858b1537ec95a99f
