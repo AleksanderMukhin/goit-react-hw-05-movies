@@ -57,7 +57,18 @@ const getCasts = async (movieId) => {
   }
 }
 
-export { getTrends, searchMovies, getMovieId, getCasts }
+const getReviews = async (movieId) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?language=en-US&page=1`, options)
+    const resp = await response.json();
+    
+    return resp.results;
+  } catch (err) {
+    return console.error(err);
+  }
+}
+
+export { getTrends, searchMovies, getMovieId, getCasts, getReviews }
 
 // API Key: 37004eb52da1844c858b1537ec95a99f
 // https://api.themoviedb.org/3/movie/550?api_key=37004eb52da1844c858b1537ec95a99f

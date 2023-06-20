@@ -19,27 +19,28 @@ const MovieDetails = () => {
     movieDetail;
   return (
     poster_path && (
-      <div>
-        <img src={`${BASE_URL}${poster_path}`} alt={original_title} />
-        <h2>{title}</h2>
-        <p>Users score: {Math.round(vote_average * 10)}%</p>
-        <h3>Overview</h3>
-        <p>{overview}</p>
-        <h3>Genres</h3>
-        <ul>
-          {genres.map(({ name, id }) => (
-            <li key={id}>{name}</li>
-          ))}
-        </ul>
-        <nav>
-          Additional information
-          <NavLink to="cast">Cast</NavLink>
-          <NavLink>Reviews</NavLink>
-        </nav>
-        <Suspense>
-          <Outlet />
-        </Suspense>
-      </div>
+      <>
+        <NavLink>Back movies</NavLink>
+        <div>
+          <img src={`${BASE_URL}${poster_path}`} alt={original_title} />
+          <h2>{title}</h2>
+          <p>Users score: {Math.round(vote_average * 10)}%</p>
+          <h3>Overview</h3>
+          <p>{overview}</p>
+          <h3>Genres</h3>
+          <ul>
+            {genres && genres.map(({ name, id }) => <li key={id}>{name}</li>)}
+          </ul>
+          <nav>
+            Additional information
+            <NavLink to="cast">Cast</NavLink>
+            <NavLink to="rewiews">Reviews</NavLink>
+          </nav>
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </div>
+      </>
     )
   );
 };

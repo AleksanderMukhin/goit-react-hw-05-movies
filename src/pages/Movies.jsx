@@ -34,7 +34,7 @@ const Movies = () => {
     setMovieId(movie.id);
   };
 
-  // console.log(searchFilms);
+  console.log(searchValue);
   return (
     <div>
       <form onSubmit={submitSearch}>

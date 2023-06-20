@@ -11,17 +11,14 @@ const Cast = () => {
     const cast = async () => {
       const casts = await getCasts(movieId);
       setActeurs(casts);
-      // console.log(casts);
     };
     if (movieId) cast();
   }, [movieId]);
 
-  console.log(acteurs);
-
   return (
     <>
       <ul>
-        {acteurs &&
+        {acteurs.length > 0 &&
           acteurs.map(({ id, profile_path, original_name, character }) => {
             return (
               <li key={id}>
@@ -34,6 +31,7 @@ const Cast = () => {
                   alt="name"
                 />
                 <p>{original_name}</p>
+                <p>Character: {character}</p>
               </li>
             );
           })}
