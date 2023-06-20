@@ -1,11 +1,15 @@
+import { useRef } from 'react';
 import { Suspense, useEffect, useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useStateContext } from '../context/StateContext';
 import { getMovieId } from '../getMovies';
 
 const MovieDetails = () => {
   const [movieDetail, setMovieDetail] = useState({});
   const { movieId, BASE_URL } = useStateContext();
+  const location = useLocation();
+  console.log(location);
+  const backToLocation = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     const details = async () => {
@@ -20,7 +24,7 @@ const MovieDetails = () => {
   return (
     poster_path && (
       <>
-        <NavLink>Back movies</NavLink>
+        <NavLink to={backToLocation.current}>Back movies</NavLink>
         <div>
           <img src={`${BASE_URL}${poster_path}`} alt={original_title} />
           <h2>{title}</h2>

@@ -7,10 +7,12 @@ import { StateContext } from './context/StateContext.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <StateContext>
-      <BrowserRouter basename='/goit-react-hw-05-movies'>      
-        <App />      
-      </BrowserRouter>
-    </StateContext>
+    
+    <BrowserRouter basename='/goit-react-hw-05-movies'>  
+      <StateContext>
+        <App />     
+      </StateContext>
+    </BrowserRouter>
+    
   </React.StrictMode>
 );

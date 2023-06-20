@@ -1,23 +1,26 @@
 import { searchMovies } from '../getMovies';
 import { useStateContext } from '../context/StateContext';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Movies = () => {
-  const [searchValue, setSearchValue] = useState('');
   const [searchFilms, setSearchFilms] = useState([]);
-  const { input, setInput, setMovieId } = useStateContext();
+  const { input, setInput, setMovieId, searchParams, setSearchParams } =
+    useStateContext();
+  const searchQuery = searchParams.get('query') ?? '';
+  const location = useLocation();
 
   useEffect(() => {
     const getMovieSearch = async () => {
-      const movieSearch = await searchMovies(searchValue);
+      const movieSearch = await searchMovies(searchQuery);
       setSearchFilms(movieSearch);
     };
     getMovieSearch();
-  }, [searchValue]);
+  }, [searchQuery]);
 
   const handleChange = ({ target: { value } }) => {
-    setInput(value.trim());
+    setInput(value);
+    console.log(input);
   };
 
   const submitSearch = evt => {
@@ -26,7 +29,7 @@ const Movies = () => {
       alert('Enter data to search!');
       return;
     }
-    setSearchValue(input);
+    input ? setSearchParams({ query: input }) : setSearchParams({});
     setInput('');
   };
 
@@ -34,7 +37,7 @@ const Movies = () => {
     setMovieId(movie.id);
   };
 
-  console.log(searchValue);
+  console.log(searchQuery);
   return (
     <div>
       <form onSubmit={submitSearch}>
@@ -61,6 +64,7 @@ const Movies = () => {
                   to="/movies/:movieId"
                   onClick={() => stateID(movie)}
                   key={movie.id}
+                  state={{ from: location }}
                 >
                   <li key={movie.id}>{movie.name || movie.title}</li>
                 </NavLink>
