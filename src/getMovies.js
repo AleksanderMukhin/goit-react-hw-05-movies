@@ -1,6 +1,3 @@
-// import { useStateContext } from './context/StateContext';
-// const { movieId } = useStateContext();
-
 const options = {
   method: 'GET',
   headers: {
@@ -15,7 +12,7 @@ const getTrends = async () => {
     const response = await fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options);
     const resp = await response.json();
     const movies = await resp.results;
-    // console.log(movies)
+    
     return movies;
   } catch (err) {
     return console.error(err);
@@ -35,9 +32,9 @@ const searchMovies = async (searchValue) => {
   }
 }
 
-const getMovieId = async (movieId) => {
+const getMovieId = async (id) => {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
     const resp = await response.json();
     
     return resp;

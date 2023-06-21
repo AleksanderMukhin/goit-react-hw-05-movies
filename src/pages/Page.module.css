@@ -19,3 +19,46 @@
 .input{
   width: 250px;
 }
+
+.btn_back{
+  display: inline-block;
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+
+.film{
+  display: flex;
+}
+
+.film_image {
+  width: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.film_context{
+  padding-left: 10px;
+}
+
+.add_info{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  margin-top: 5px;
+  padding: 15px 10px;
+}
+
+.add_info_link{
+  display: inline-block;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.add_info_link:hover{
+  color: red;
+}

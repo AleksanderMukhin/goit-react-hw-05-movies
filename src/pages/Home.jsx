@@ -28,7 +28,7 @@ const Home = () => {
         return (
           <NavLink
             className={css.home_link}
-            to="/movies/:movieId"
+            to={`movies/${movie.id}`}
             onClick={() => stateID(movie)}
             key={movie.id}
           >

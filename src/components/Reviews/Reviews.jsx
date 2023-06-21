@@ -1,9 +1,9 @@
-import { useStateContext } from 'context/StateContext';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getReviews } from '../../getMovies';
 
 const Reviews = () => {
-  const { movieId } = useStateContext();
+  const { movieId } = useParams();
   const [reviews, setReviews] = useState({});
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Reviews = () => {
   return (
     <>
       <ul>
-        {reviews.length > 0 &&
+        {reviews.length > 0 ? (
           reviews.map(({ id, author, content }) => {
             return (
               <li key={id}>
@@ -25,7 +25,10 @@ const Reviews = () => {
                 <p>{content}</p>
               </li>
             );
-          })}
+          })
+        ) : (
+          <p>We don't have any rewiews for this movie</p>
+        )}
       </ul>
     </>
   );

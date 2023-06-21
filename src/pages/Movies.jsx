@@ -6,8 +6,7 @@ import css from './Page.module.css';
 
 const Movies = () => {
   const [searchFilms, setSearchFilms] = useState([]);
-  const { input, setInput, setMovieId, searchParams, setSearchParams } =
-    useStateContext();
+  const { input, setInput, searchParams, setSearchParams } = useStateContext();
   const searchQuery = searchParams.get('query') ?? '';
   const location = useLocation();
 
@@ -34,7 +33,7 @@ const Movies = () => {
   };
 
   const stateID = movie => {
-    setMovieId(movie.id);
+    setSearchParams({ id: movie.id });
   };
 
   return (
@@ -61,7 +60,7 @@ const Movies = () => {
             searchFilms.map(movie => {
               return (
                 <NavLink
-                  to="/movies/:movieId"
+                  to={`${movie.id}`}
                   onClick={() => stateID(movie)}
                   key={movie.id}
                   state={{ from: location }}
