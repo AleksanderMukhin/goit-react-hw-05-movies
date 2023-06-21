@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getTrends } from '../getMovies';
 import { useStateContext } from '../context/StateContext';
+import css from './Page.module.css';
 
 const Home = () => {
   const [trends, setTrends] = useState([]);
@@ -22,10 +23,11 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Trending today</h1>
+      <h1 className={css.title}>Trending today</h1>
       {trends.map(movie => {
         return (
           <NavLink
+            className={css.home_link}
             to="/movies/:movieId"
             onClick={() => stateID(movie)}
             key={movie.id}

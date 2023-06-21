@@ -2,6 +2,7 @@ import { searchMovies } from '../getMovies';
 import { useStateContext } from '../context/StateContext';
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import css from './Page.module.css';
 
 const Movies = () => {
   const [searchFilms, setSearchFilms] = useState([]);
@@ -20,7 +21,6 @@ const Movies = () => {
 
   const handleChange = ({ target: { value } }) => {
     setInput(value);
-    console.log(input);
   };
 
   const submitSearch = evt => {
@@ -37,15 +37,11 @@ const Movies = () => {
     setMovieId(movie.id);
   };
 
-  console.log(searchQuery);
   return (
     <div>
-      <form onSubmit={submitSearch}>
-        <button type="submit">
-          <span>Search</span>
-        </button>
-
+      <form className={css.form} onSubmit={submitSearch}>
         <input
+          className={css.input}
           type="text"
           autoComplete="off"
           autoFocus
@@ -54,6 +50,10 @@ const Movies = () => {
           value={input}
           name="input"
         />
+
+        <button type="submit">
+          <span>Search</span>
+        </button>
       </form>
       <div>
         <ul>

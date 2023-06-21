@@ -8,7 +8,6 @@ const MovieDetails = () => {
   const [movieDetail, setMovieDetail] = useState({});
   const { movieId, BASE_URL } = useStateContext();
   const location = useLocation();
-  console.log(location);
   const backToLocation = useRef(location.state?.from ?? '/');
 
   useEffect(() => {

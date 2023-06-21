@@ -1,0 +1,21 @@
+.title{
+  margin-top: 20px;
+}
+
+.home_link{
+  text-decoration: none;
+  color: black;
+}
+
+.home_link:hover{
+  color: red;
+}
+
+.form{
+  display: flex;
+  margin-top: 10px;
+}
+
+.input{
+  width: 250px;
+}
